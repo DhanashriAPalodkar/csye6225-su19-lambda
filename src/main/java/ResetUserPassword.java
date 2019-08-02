@@ -62,7 +62,8 @@ public class ResetUserPassword implements RequestHandler<SNSEvent, Object>
                             .withSubject(new Content().withCharset("UTF-8")
                                     .withData(SUBJECT)))
                     .withSource(FROM);
-            client.sendEmail(request);
+            SendEmailResult sendEmailResult = client.sendEmail(request);
+            logger.log(sendEmailResult.toString());
             logger.log("Password reset email has been sent to " + TO.replaceAll("(?<=.{3}).(?=.*@)", "*"));
         }
         catch (Exception ex)
