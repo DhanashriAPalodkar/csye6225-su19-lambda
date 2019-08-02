@@ -44,7 +44,7 @@ public class DyanmoDBService
         try
         {
             QuerySpec spec = new QuerySpec()
-                    .withKeyConditionExpression("email = :v_email")
+                    .withKeyConditionExpression("id = :v_email")
                     .withFilterExpression("expiration > :v_expiration")
                     .withValueMap(new ValueMap()
                             .withString(":v_email", email)
@@ -74,7 +74,7 @@ public class DyanmoDBService
     {
         try 
         {
-            PutItemOutcome outcome = table.putItem(new Item().withPrimaryKey("email", email)
+            PutItemOutcome outcome = table.putItem(new Item().withPrimaryKey("id", email)
                     .withString("token", token)
                     .withNumber("expiration", Instant.now().plus(TTL_MINS, ChronoUnit.MINUTES).getEpochSecond()));
             ResetUserPassword.logger.log("Item insertion succeeded:\n" + outcome.toString());
