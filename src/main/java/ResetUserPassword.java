@@ -36,7 +36,7 @@ public class ResetUserPassword implements RequestHandler<SNSEvent, Object>
 
     private void sendEmail(String TO, String domain, String token)
     {
-        String reset_url="http://"+domain+":8080/reset?email="+TO+"&token="+token;
+        String reset_url="https://"+domain+"/reset?email="+TO+"&token="+token;
         String FROM = "noreply@" + domain;
         String SUBJECT = "Password Reset Requested";
         String BODY = "<h2>Password Reset</h2>"
